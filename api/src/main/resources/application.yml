@@ -1,0 +1,27 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: deafio-dock-api
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/desafio_dock?schema=public
+    password: desafio
+    username: desafio
+
+  liquibase:
+    enabled: false
+    change-log: classpath:db/master.yaml
+    contexts: local, dev, prd
+#    url: jdbc:postgresql://${database.host}:${database.port}/${database.name}
+    url: jdbc:postgresql://localhost:5432/desafio_dock?schema=public
+    user: desafio
+    password: desafio
+
+
+logging:
+  level:
+    org:
+      springframework:
+        r2dbc: DEBUG
+
