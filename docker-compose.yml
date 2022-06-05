@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  db:
+    container_name: db_desafio
+    image: postgres:12-alpine
+    environment:
+      - POSTGRES_USER=desafio
+      - POSTGRES_PASSWORD=desafio
+      - POSTGRES_DB=desafio_dock
+    ports:
+      - 5432:5432
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
