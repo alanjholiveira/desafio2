@@ -22,18 +22,19 @@ public class PessoaService {
 
     private final PessoaRepository repository;
 
+    /**
+     * Método publico responsável por buscar todas pessoas cadastrada na base de dados
+     * @return Flux<Pessoa>
+     */
     public Flux<Pessoa> findAll() {
         return repository.findAll(DEFAULT_SORT);
     }
 
-    public Mono<Pessoa> create(Pessoa entity) {
-        return repository.save(entity);
-    }
-
-    public Mono<Pessoa> findByIdPessoa(String idPessoa) {
-        return repository.findByIdPessoa(idPessoa);
-    }
-
+    /**
+     * Método publico responsável em buscar uma pessoa pelo idPessoa
+     * @param idPessoa BigInteger
+     * @return Mono<Pessoa>
+     */
     public Mono<Pessoa> findByIdPessoa(BigInteger idPessoa) {
         return repository.findById(idPessoa);
     }

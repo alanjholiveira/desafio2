@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import tech.dock.desafio.api.domain.entity.Transacao;
-import tech.dock.desafio.api.infrastructure.enums.TipoTransacao;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -14,6 +13,12 @@ import java.time.LocalDate;
 
 @Repository
 public interface TransacaoRepository extends ReactiveSortingRepository<Transacao, BigInteger> {
+
+    /**
+     * Query Method buscar transações pelo id Conta
+     * @param idConta BigInteger
+     * @return Flux<Transacao>
+     */
     Flux<Transacao> findByIdConta(BigInteger idConta);
 
     /**
