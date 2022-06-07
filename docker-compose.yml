@@ -13,5 +13,19 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
 
+  desafio-api:
+    build:
+      context: ./api
+    image: desafio-api
+    ports:
+      - "8080:8080"
+    environment:
+      - api.database.name=desafio_dock
+      - api.database.host=db
+      - api.database.username=desafio
+      - api.database.password=desafio
+    depends_on:
+      - db
+
 volumes:
   db_data:

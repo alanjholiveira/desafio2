@@ -7,3 +7,5 @@ databaseChangeLog:
       file: db/changelog/20220603154300_CREATE_TABLE_TRANSACAO_schema.sql
   - include:
       file: db/changelog/20220605212100_INSERT_INTO_TABLE_PESSOA_schema.sql
+  - include:
+      file: db/changelog/20220607155600_INSERT_INTO_TABLE_CONTA_schema.sql
