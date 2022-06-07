@@ -36,11 +36,12 @@ Passo 2:
 docker-compose up -d --build
 ```
 
-Passo 2:
+Passo 3:
 
 ```
-http://localhost:8080/
-
+Acesse a url abaixo para ter acesso a documentação da api
+<http://localhost:8080/>
+```
 
 ### Rodar os testes da aplicação
 
