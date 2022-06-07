@@ -18,18 +18,12 @@ import java.math.BigInteger;
 
 @Slf4j
 @RestController
-@RequestMapping("/contas")
+@RequestMapping("/v1/contas")
 @RequiredArgsConstructor
 public class ContaRest {
 
     private final ContaService service;
 
-
-    @GetMapping()
-    public Flux<ContaResponse> listarTodaconta() {
-        return service.listarTodaConta()
-                .map(ContaMapper::toResponse);
-    }
 
     @PostMapping()
     public Mono<ContaResponse> criarConta(@RequestBody @Valid ContaRequest request) {

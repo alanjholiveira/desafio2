@@ -12,7 +12,4 @@ public class PessoaMapper extends MapperGeneric {
         return mapper.map(entity, PessoaResponse.class);
     }
 
-    public static Pessoa toEntity(PessoaRequest request) {
-        return mapper.map(request, Pessoa.class);
-    }
 }

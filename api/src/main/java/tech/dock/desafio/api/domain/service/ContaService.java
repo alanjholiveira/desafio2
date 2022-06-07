@@ -25,12 +25,6 @@ public class ContaService {
     private final TransacaoService transacaoService;
     private final PessoaService pessoaService;
 
-    // REMOVER ANTES DE ENVIAR
-    public Flux<Conta> listarTodaConta() {
-        return repository.findAll()
-                .flatMap(this::loadRelations);
-    }
-
     /**
      * Método publico responsável por criar uma nova conta
      * @param conta Conta
@@ -146,6 +140,7 @@ public class ContaService {
 
     private Mono<Conta> buscarContaByIdConta(BigInteger idConta) {
         return repository.findById(idConta)
+                .flatMap(this::loadRelations)
                 .switchIfEmpty(Mono.error(new ContaNaoEncontradaException()))
                 .doOnSuccess(c -> log.info("Conta: {} encontrada com sucesso", idConta));
     }
@@ -193,17 +188,6 @@ public class ContaService {
      */
     private boolean isLower(BigDecimal value, BigDecimal max) {
         return value.compareTo(max) <= 0;
-    }
-
-    /**
-     * Realiza calculo para verificar ser valo está entre os valores informado.
-     * @param value BigDecimal
-     * @param min BigDecimal
-     * @param max BigDecimal
-     * @return boolean
-     */
-    private boolean isBetween(BigDecimal value, BigDecimal min, BigDecimal max) {
-        return value.compareTo(min) >= 0 && value.compareTo(max) <= 0;
     }
 
     private Mono<Conta> persistirBase(Conta conta) {

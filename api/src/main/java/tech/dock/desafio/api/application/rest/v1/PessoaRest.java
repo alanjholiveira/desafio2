@@ -16,13 +16,11 @@ import java.math.BigInteger;
 
 @Slf4j
 @RestController
-@RequestMapping("/pessoas")
+@RequestMapping("/v1/pessoas")
 @RequiredArgsConstructor
 public class PessoaRest {
 
     private final PessoaService service;
-
-
     @GetMapping()
     public Flux<PessoaResponse> findAll() {
         log.info("Listando todos dados cadastrado na base de dados");

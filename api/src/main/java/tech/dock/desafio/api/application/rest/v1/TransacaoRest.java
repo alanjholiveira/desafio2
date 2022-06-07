@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import tech.dock.desafio.api.application.rest.v1.mapper.TransacaoMapper;
 import tech.dock.desafio.api.application.rest.v1.response.TransacaoResponse;
-import tech.dock.desafio.api.domain.entity.Transacao;
 import tech.dock.desafio.api.domain.service.TransacaoService;
 
 import java.math.BigInteger;
@@ -15,7 +14,7 @@ import java.time.LocalDate;
 
 @Slf4j
 @RestController
-@RequestMapping("/transacoes")
+@RequestMapping("/v1/transacoes")
 @RequiredArgsConstructor
 public final class TransacaoRest {
 

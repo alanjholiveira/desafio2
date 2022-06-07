@@ -8,11 +8,10 @@ import tech.dock.desafio.api.infrastructure.enums.TipoTransacao;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @AllArgsConstructor
-public final class TransacaoMapper extends MapperGeneric {
+public final class TransacaoMapper {
 
 
     public static TransacaoResponse toResponse(Transacao transacao) {

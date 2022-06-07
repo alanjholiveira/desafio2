@@ -19,7 +19,6 @@ import tech.dock.desafio.api.infrastructure.repository.TransacaoRepository;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.net.http.HttpHeaders;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -76,7 +75,7 @@ public class TransacaoService {
     private Mono<Boolean> validarUsoLimiteDiarioSaque(Conta conta, TipoTransacao tipoTransacao) {
         log.info("Verificando ser cliente possui limite diario para saque");
 
-        if (!TipoTransacao.SAQUE.equals(tipoTransacao)) {
+        if (TipoTransacao.DEPOSITO.equals(tipoTransacao)) {
             return Mono.just(Boolean.TRUE);
         }
         return Mono.just(conta)
