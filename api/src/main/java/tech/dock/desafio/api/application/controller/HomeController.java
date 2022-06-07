@@ -16,7 +16,7 @@ import java.net.URL;
 
 @RestController
 @ApiIgnore
-public class HomeController {
+public final class HomeController {
 
     @Value("${spring.application.name}")
     private String appName;

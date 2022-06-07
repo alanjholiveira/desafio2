@@ -1,6 +1,7 @@
 package tech.dock.desafio.api.application.rest.v1.mapper;
 
-import lombok.AllArgsConstructor;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import tech.dock.desafio.api.application.rest.v1.request.ContaRequest;
 import tech.dock.desafio.api.application.rest.v1.response.ContaResponse;
 import tech.dock.desafio.api.application.rest.v1.response.ContaSaldoResponse;
@@ -10,10 +11,15 @@ import tech.dock.desafio.api.infrastructure.enums.TipoConta;
 
 import java.math.BigDecimal;
 
-@AllArgsConstructor
-public class ContaMapper extends MapperGeneric {
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class ContaMapper {
 
 
+    /**
+     * Realiza conversão da request para entidade
+     * @param request ContaRequest
+     * @return Conta
+     */
     public static Conta toEntity(ContaRequest request) {
         return Conta.builder()
                 .idPessoa(request.getIdPessoa())
@@ -23,12 +29,13 @@ public class ContaMapper extends MapperGeneric {
                 .tipoConta(request.getTipoConta().getIdTipoConta())
                 .saldo(BigDecimal.ZERO)
                 .build();
-//        return mapper.typeMap(ContaRequest.class, Conta.class).addMappings(map -> {
-//            map.map(ContaRequest::getIdPessoa, Conta::setPessoa);
-//            map.map(ContaRequest::getLimiteSaqueDiario, Conta::setLimiteSaqueDiario);
-//        });
     }
 
+    /**
+     * Realiza a conversão de entidade para um response
+     * @param entity Conta
+     * @return ContaResponse
+     */
     public static ContaResponse toResponse(Conta entity) {
         return ContaResponse.builder()
                 .idConta(entity.getIdConta())
@@ -38,6 +45,11 @@ public class ContaMapper extends MapperGeneric {
                 .build();
     }
 
+    /**
+     * Realiza conversão da entidade para toSaldoResponse
+     * @param entity Conta
+     * @return ContaSaldoResponse
+     */
     public static ContaSaldoResponse toSaldoResponse(Conta entity) {
         return ContaSaldoResponse.builder()
                 .idConta(entity.getIdConta())

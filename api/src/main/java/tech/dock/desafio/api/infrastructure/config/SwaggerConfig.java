@@ -2,6 +2,8 @@ package tech.dock.desafio.api.infrastructure.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.server.RouterFunction;
+import org.springframework.web.reactive.function.server.ServerResponse;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -10,6 +12,11 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
+
+import java.net.URI;
+
+import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
+import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
 @EnableOpenApi
@@ -38,6 +45,12 @@ public class SwaggerConfig {
 
     private Contact contact() {
         return new Contact("Alan Oliveira", "https://github.com/alanjholiveira", "alanjhone@gmail.com");
+    }
+
+    @Bean
+    RouterFunction<ServerResponse> routingFunction() {
+        return route(GET("/swagger"),
+                req -> ServerResponse.temporaryRedirect(URI.create("swagger-ui/")).build());
     }
 
 }

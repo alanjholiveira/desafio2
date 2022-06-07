@@ -22,7 +22,7 @@ import java.util.Optional;
 
 @ControllerAdvice
 @RequiredArgsConstructor
-public class GlobalExceptionHandler {
+public final class GlobalExceptionHandler {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 

@@ -1,13 +1,18 @@
 package tech.dock.desafio.api.application.rest.v1.mapper;
 
-import lombok.AllArgsConstructor;
-import tech.dock.desafio.api.application.rest.v1.request.PessoaRequest;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import tech.dock.desafio.api.application.rest.v1.response.PessoaResponse;
 import tech.dock.desafio.api.domain.entity.Pessoa;
 
-@AllArgsConstructor
-public class PessoaMapper extends MapperGeneric {
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class PessoaMapper extends MapperGeneric {
 
+    /**
+     * Realiza conversão da entidade Pessoa para Pessoa Response
+     * @param entity Pessoa
+     * @return PessoaResponse
+     */
     public static PessoaResponse toResponse(Pessoa entity) {
         return mapper.map(entity, PessoaResponse.class);
     }
