@@ -81,6 +81,7 @@ public class TransacaoService {
         return Mono.just(conta)
                 .flatMap(c -> repository.getValorTransacoesPorDia(c.getIdConta(), TipoTransacao.SAQUE.getIdTransacao(),
                         LocalDate.now()))
+                .switchIfEmpty(Mono.just(BigDecimal.ZERO))
                 .filter(totalSaque -> Utils.isLower(totalSaque, conta.getLimiteSaqueDiario()))
                 .switchIfEmpty(Mono.error(new LimiteDiarioException()))
                 .flatMap(a -> Mono.just(Boolean.TRUE));
